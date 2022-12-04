@@ -22,3 +22,22 @@ foreach ($duplicatedItems as $foundItem) {
     $result += (strpos($priorityList, $singlePriority) + 1);
 }
 var_dump($result);
+
+
+// ================ Part Two =======================
+
+$group = array_chunk($data, 3);
+
+foreach ($group as $elf) {
+    $firstElf = str_split($elf[0]);
+    $secondElf = str_split($elf[1]);
+    $thirdElf = str_split($elf[2]);
+    $commonItem[] = array_intersect($firstElf, $secondElf, $thirdElf);
+}
+$resultV2 = 0;
+foreach ($commonItem as $foundItem) {
+    $firstKey = array_key_first($foundItem);
+    $singlePriority = $foundItem[$firstKey];
+    $resultV2 += (strpos($priorityList, $singlePriority) + 1);
+}
+var_dump($resultV2);
